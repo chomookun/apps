@@ -1,0 +1,90 @@
+// pluging
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.4.2'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+// description
+group = 'net.chomookun'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+// configurations
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+	runtime.exclude group:'org.slf4j', module: 'slf4j-log4j12'
+}
+
+// repository
+repositories {
+	mavenCentral()
+}
+
+// defines encoding
+compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile){
+	options.encoding = 'UTF-8'
+}
+
+// dependencies
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+}
+
+// test
+test {
+	useJUnitPlatform()
+}
+
+// boot jar
+bootJar {
+	enabled = false
+}
+tasks.jar {
+	enabled = true
+}
+
+// custom task
+task deleteJar(type: Delete){
+	delete fileTree('./'){
+		include '*.jar'
+	}
+}
+task copyJar(type: Copy){
+	from jar
+	into './'
+}
+task deleteLib(type: Delete) {
+	delete fileTree('./lib'){
+		include '*.jar'
+	}
+}
+task copyLib(type: Copy) {
+	from configurations.default
+	into './lib'
+}
+
+// add task after build
+build.finalizedBy {[
+	deleteJar,
+	copyJar,
+	deleteLib,
+	copyLib
+]}

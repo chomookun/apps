@@ -1,0 +1,3 @@
+# Auto Configurer
+org.springframework.boot.autoconfigure.EnableAutoConfiguraiton=\
+org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAuutoConfiguration

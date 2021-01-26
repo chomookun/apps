@@ -1,0 +1,38 @@
+debug: true
+server:
+  port: 8080
+spring:
+  profiles:
+    active: local
+  datasource:
+    hikari:
+      driver-class-name:
+      jdbc-url:
+      username:
+      password:
+      minimumIdle: 1
+      maximumPoolSize: 3
+      connectionTestQuery: select 1 
+  jackson:
+    serialization:
+      write-dates-as-timestamp: true
+      INDENT_OUTPUT: true
+  mvc:
+    static-path-pattern: static/**
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+
+web-config:
+  
+
+# local
+---
+spring:
+  profiles: local
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
