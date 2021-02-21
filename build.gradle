@@ -4,8 +4,55 @@
  * This is a general purpose Gradle build.
  * Learn more about Gradle by exploring our samples at https://docs.gradle.org/6.8.1/samples
  */
-plugins {
-	id 'java'	
+allprojects {
+	
+	apply plugin: 'java'
+	
+	compileJava.options.encoding = 'UTF-8'
+	tasks.withType(JavaCompile) {
+		options.encoding = 'UTF-8'
+	}
+	
+	repositories {
+		mavenCentral()
+	}
+	
+	dependencies {
+	
+		// lombok
+		implementation 'org.projectlombok:lombok:1.18.12'
+		compileOnly 'org.projectlombok:lombok:1.18.12'
+		annotationProcessor 'org.projectlombok:lombok:1.18.12'
+		testCompileOnly 'org.projectlombok:lombok:1.18.12'
+		testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+		
+		// sfl4j
+		implementation "org.slf4j:slf4j-api:1.7.30"
+		
+		// junit
+		implementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
+		implementation 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
+		implementation 'org.junit.vintage:junit-vintage-engine:5.5.2'
+		implementation "org.junit.platform:junit-platform-commons:1.7.0"
+		
+		// jpa
+		implementation 'org.springframework.data:spring-data-jpa:2.3.7.RELEASE'
+		implementation 'org.hibernate:hibernate-core:5.4.0.Final'
+		implementation 'org.hibernate:hibernate-entitymanager:5.4.0.Final'
+		implementation 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
+		
+		// mybatis
+		implementation 'org.mybatis:mybatis:3.5.5'
+		implementation 'org.mybatis:mybatis-spring:2.0.5'
+
+		// servlet-api
+		implementation 'javax.servlet:servlet-api:2.5'
+		
+	}
+
+	test {
+		useJUnitPlatform()
+	}
 }
 
 
