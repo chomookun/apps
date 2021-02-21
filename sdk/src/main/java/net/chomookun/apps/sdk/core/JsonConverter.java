@@ -9,6 +9,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class JsonConverter {
 
 	public static ObjectMapper objectMapper = new ObjectMapper();
@@ -21,6 +24,7 @@ public class JsonConverter {
 
 	/**
 	 * return objectMapper
+	 * 
 	 * @return
 	 */
 	public static ObjectMapper getObjectMapper() {
@@ -29,6 +33,7 @@ public class JsonConverter {
 
 	/**
 	 * toJson
+	 * 
 	 * @param obj
 	 * @return
 	 * @throws Exception
@@ -39,6 +44,7 @@ public class JsonConverter {
 
 	/**
 	 * toJson
+	 * 
 	 * @param list
 	 * @return
 	 * @throws Exception
@@ -49,6 +55,7 @@ public class JsonConverter {
 
 	/**
 	 * toObject
+	 * 
 	 * @param <T>
 	 * @param json
 	 * @param clazz
@@ -61,6 +68,7 @@ public class JsonConverter {
 
 	/**
 	 * toList
+	 * 
 	 * @param <T>
 	 * @param json
 	 * @param clazz
@@ -68,11 +76,13 @@ public class JsonConverter {
 	 * @throws Exception
 	 */
 	public static <T> List<T> toList(String json, Class<T> clazz) throws Exception {
-		return objectMapper.readValue(json,TypeFactory.defaultInstance().constructCollectionType(Collection.class, clazz));
+		return objectMapper.readValue(json,
+				TypeFactory.defaultInstance().constructCollectionType(Collection.class, clazz));
 	}
 
 	/**
 	 * convert JSON string to string
+	 * 
 	 * @param string
 	 * @return
 	 * @throws Exception
@@ -84,6 +94,7 @@ public class JsonConverter {
 
 	/**
 	 * toJson
+	 * 
 	 * @param value
 	 * @return
 	 */
@@ -92,6 +103,7 @@ public class JsonConverter {
 		try {
 			objectMapper.readTree(value);
 		} catch (Exception e) {
+			log.debug(e.getMessage());
 			valid = false;
 		}
 		return valid;

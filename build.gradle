@@ -34,6 +34,15 @@ allprojects {
 		implementation 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
 		implementation 'org.junit.vintage:junit-vintage-engine:5.5.2'
 		implementation "org.junit.platform:junit-platform-commons:1.7.0"
+
+		// springframework
+		implementation 'org.springframework:spring-core:5.2.13.RELEASE'
+		implementation 'org.springframework:spring-beans:5.2.13.RELEASE'
+		implementation 'org.springframework:spring-context:5.2.13.RELEASE'
+		implementation 'org.springframework:spring-test:5.2.13.RELEASE'
+		
+		// spring-boot
+		implementation 'org.springframework.boot:spring-boot:2.3.9.RELEASE'
 		
 		// jpa
 		implementation 'org.springframework.data:spring-data-jpa:2.3.7.RELEASE'
@@ -45,9 +54,17 @@ allprojects {
 		implementation 'org.mybatis:mybatis:3.5.5'
 		implementation 'org.mybatis:mybatis-spring:2.0.5'
 
+		// hikariCP
+		implementation 'com.zaxxer:HikariCP:3.4.5'
+
 		// servlet-api
 		implementation 'javax.servlet:servlet-api:2.5'
-		
+
+		// spring-security
+		implementation 'org.springframework.security:spring-security-core:5.3.8.RELEASE'
+		implementation 'org.springframework.security:spring-security-config:5.3.8.RELEASE'
+		implementation 'org.springframework.security:spring-security-web:5.3.8.RELEASE'
+
 	}
 
 	test {

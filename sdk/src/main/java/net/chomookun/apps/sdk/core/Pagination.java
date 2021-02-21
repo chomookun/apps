@@ -6,14 +6,16 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
 public class Pagination {
 
-	int rows = 100;
-	int page = 1;
-	long totalCount = -1;
-
-	public Pagination() {
-	}
+	private int rows = 100;
+	private int page = 1;
+	private int totalCount = -1;
 
 	/**
 	 * Returns spring-data PageRequest object.
@@ -60,6 +62,7 @@ public class Pagination {
 
 	/**
 	 * toResponse
+	 * 
 	 * @param response
 	 */
 	public void setContentRangeHeader(HttpServletResponse response) {
@@ -72,30 +75,6 @@ public class Pagination {
 
 	public int getLimit() {
 		return rows;
-	}
-
-	public int getPage() {
-		return page;
-	}
-
-	public void setPage(int page) {
-		this.page = page;
-	}
-
-	public int getRows() {
-		return rows;
-	}
-
-	public void setRows(int rows) {
-		this.rows = rows;
-	}
-
-	public long getTotalCount() {
-		return totalCount;
-	}
-
-	public void setTotalCount(long totalCount) {
-		this.totalCount = totalCount;
 	}
 
 }
