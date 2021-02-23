@@ -1,15 +1,9 @@
 package net.chomookun.apps.sdk.core;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
-
-import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -22,8 +16,15 @@ public class RoutingDataSource extends AbstractRoutingDataSource {
      * 
      * @param key
      */
-    public static void setCurrentKey(String key) {
+    public static void setKey(String key) {
         currentKey.set(key);
+    }
+
+    /**
+     * remove current key
+     */
+    public static void clearKey() {
+        currentKey.remove();
     }
 
     @Override

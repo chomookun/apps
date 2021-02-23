@@ -57,6 +57,9 @@ allprojects {
 		// hikariCP
 		implementation 'com.zaxxer:HikariCP:3.4.5'
 
+		// log4jdbc
+		implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+
 		// servlet-api
 		implementation 'javax.servlet:servlet-api:2.5'
 
